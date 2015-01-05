@@ -52,6 +52,7 @@
     }
     .navbar {
       border-bottom: 1px solid #686868;
+      z-index: 5;
     }
     .polymer {
         width: 75px;
@@ -60,38 +61,49 @@
     .fa-twitter-square {
         color: #1dcaff;
     }
-.login_control
-{
-  background-color: rgba(0,0,0,.6);
-  border-bottom-left-radius: 8px;
-  -moz-border-bottom-left-radius: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  -moz-border-bottom-right-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-}
-.control
-{
-  color: #000;
-  margin: 10px;
-}
-.label
-{
-  color: #EB4F26;
-  font-size: 18px;
-  font-weight: 500;
-}
-.btn-orange
-{
-  background-color: #FC563B;
-  margin-bottom: 8px;
-  color: #fefefe;
-}
-.btn-orange:hover
-{
-  background-color: #F22F26;
-  color: #eaeaea;
-}
+    .login_control
+    {
+      background-color: rgba(0,0,0,.6);
+      border-bottom-left-radius: 8px;
+      -moz-border-bottom-left-radius: 8px;
+      -webkit-border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      -moz-border-bottom-right-radius: 8px;
+      -webkit-border-bottom-right-radius: 8px;
+    }
+    .control
+    {
+      color: #000;
+      margin: 10px;
+    }
+    .label
+    {
+      color: #EB4F26;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .btn-orange
+    {
+      background-color: #FC563B;
+      margin-bottom: 8px;
+      color: #fefefe;
+    }
+    .btn-orange:hover
+    {
+      background-color: #F22F26;
+      color: #eaeaea;
+    }
+    .share-button {
+      position: relative;
+      top: -114px;
+      left: 14px;
+    }
+    @media (max-width: 391px) {
+      .share-button {
+        top: -300px;
+        z-index: 100;
+      }
+    }
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -141,6 +153,8 @@
 
         <div class="col-md-6 col-md-offset-3">
             <div class="row login_control">
+
+            <div class="share-button"></div>
               <form id="wow-form">
                 <div class="control">
                   <div class="label">Server</div>
@@ -216,6 +230,19 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Social Share -->
+    <script src="share.min.js"></script>
+
+    <script>
+      new Share(".share-button", {
+        networks: {
+          facebook: {
+            app_id: "abc123"
+          }
+        }
+      });
+    </script>
 
     <!-- Googley eyes  ʘ_ʘ   -->
     <script>
