@@ -1,0 +1,35 @@
+{
+  "name": "apply-author-styles",
+  "authors": [
+    "Chris Strom <github@eeecomputes.com>"
+  ],
+  "description": "Pull page styles into Polymer custom elements.",
+  "keywords": [
+    "Polymer",
+    "web-components",
+    "css"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/eee-c/apply-author-styles",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.2",
+    "core-ajax": "Polymer/core-ajax#~0.3.2"
+  },
+  "_release": "434679b8da",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "434679b8da1df0def4344de8ea45d88ddb39d563"
+  },
+  "_source": "git://github.com/eee-c/apply-author-styles.git",
+  "_target": "*",
+  "_originalSource": "eee-c/apply-author-styles",
+  "_direct": true
+}
