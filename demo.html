@@ -53,7 +53,80 @@
     .navbar {
       border-bottom: 1px solid #686868;
     }
+    .polymer {
+        width: 75px;
+        margin: 0 auto;
+    }
+    .fa-twitter-square {
+        color: #1dcaff;
+    }
+.login_control
+{
+  background-color: rgba(0,0,0,.6);
+  border-bottom-left-radius: 8px;
+  -moz-border-bottom-left-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  -moz-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+}
+.control
+{
+  color: #000;
+  margin: 10px;
+}
+.label
+{
+  color: #EB4F26;
+  font-size: 18px;
+  font-weight: 500;
+}
+.form-control
+{
+  border: none;
+  box-shadow: none !important;
+  color: #000000 !important;
+  font-size: 25px;
+  margin-bottom: 10px;
+  moz-box-shadow: none !important;
+  outline: none;
+  padding: 25px;
+  padding-left: 10px;
+  webkit-box-shadow: none !important;
+}
+.form-control:focus
+{
+  border-bottom: 1px solid #FC563B;
+  border-radius: 0px;
+  box-shadow: none !important;
+  margin-bottom: 10px;
+  moz-box-shadow: none !important;
+  outline: none;
+  webkit-box-shadow: none !important;
+}
+.btn-orange
+{
+  background-color: #FC563B;
+  border-radius: 0px;
+  font-size: 20px;
+  font-weight: inherit;
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+}
+.btn-orange:hover
+{
+  background-color: #F22F26;
+  border-radius: 0px;
+  color: #FFF !important;
+  font-size: 20px;
+  font-weight: inherit;
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+}
     </style>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -94,12 +167,35 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Put your page content here! -->
-    <wow-profile-card></wow-profile-card>
+    <div class="container">
+
+        <!-- Put your page content here! -->
+        <wow-profile-card></wow-profile-card>
+
+        <div class="col-md-6 col-md-offset-3">
+            <div class="row login_control">
+              <form id="wow-form">
+                <div class="control">
+                  <div class="label">Server</div>
+                  <input type="text" id="server" class="form-control" value="Server" autocomplete="off">
+                </div>
+                <div class="control">
+                  <div class="label">Character</div>
+                  <input type="password" id="characterName" class="form-control" value="Character" autocomplete="off">
+                </div>
+                <div align="center">
+                  <button class="btn btn-orange" type="submit">LOAD CHARACTER</button>
+                </div>
+              </form>
+              </div><!-- /.row -->
+        </div><!-- /.login_control -->
+
+      </div><!-- /.container -->
 
     <div class="container">
-    <footer>
-        <p class="center"><a href="https://github.com/chrisvogt/wow-profile-card"><i class="fa fa-code"></i> Source code on GitHub</a> | Follow me on twitter <a href="https://twitter.com/c1v0">@c1v0</a></p>
+    <footer class="center">
+        <p>Follow me on <i class="fa fa-twitter-square"></i> <a href="https://twitter.com/c1v0">@c1v0</a></p>
+        <a href="https://www.polymer-project.org/" title="Polymer web components"><img class="polymer" src="https://www.polymer-project.org/images/logos/p-logo.svg"></a>
     </footer>
     </div>
 
@@ -107,6 +203,25 @@
     console && console.log("%c<wow-profile-card>\n%cLooking under the hood, huh? This element is open sourced on GitHub - check it out there. :)",
                            "font-size:1.5em;color:#4558c9;", "color:#d61a7f;font-size:1em;");
     </script>
+
+  <script>
+    window.onload = function() {
+      var wowForm = document.getElementById("wow-form");
+      var wowCard = document.getElementsByTagName('wow-profile-card')[0];
+
+      wowForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var charName = document.getElementById('characterName').value;
+        var serverName = document.getElementById('server').value;
+
+        wowCard.setAttribute('characterName', charName);
+        wowCard.setAttribute('serverName', charName);
+
+        console.log(charName);
+        console.log(serverName);
+      });
+    }
+  </script>
 
     <!-- jQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
