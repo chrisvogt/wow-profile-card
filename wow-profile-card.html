@@ -40,7 +40,7 @@ World of Warcraft character profile element. (Uses Twitter Bootstrap.)
 div h3 span
 {
   color: #FFF;
-  font-size: 14px;
+  font-size: .675em;
 }
 div span
 {
@@ -111,7 +111,7 @@ h1
   <!-- ========================= -->
 
   <!-- PRODUCTION -->
-  <polymer-jsonp auto url="http://us.battle.net/api/wow/character/emerald-dream/Carilliya?fields=appearance&jsonp=" response="{{character}}"></polymer-jsonp>
+  <polymer-jsonp auto url="http://us.battle.net/api/wow/character/{{ server }}/{{ characterName }}?fields=appearance&jsonp=" response="{{character}}"></polymer-jsonp>
 
   <!-- DEVELOPMENT -->
   <!-- <core-ajax id="topodata" auto url="data/character.json" handleAs="json"

@@ -81,49 +81,16 @@
   font-size: 18px;
   font-weight: 500;
 }
-.form-control
-{
-  border: none;
-  box-shadow: none !important;
-  color: #000000 !important;
-  font-size: 25px;
-  margin-bottom: 10px;
-  moz-box-shadow: none !important;
-  outline: none;
-  padding: 25px;
-  padding-left: 10px;
-  webkit-box-shadow: none !important;
-}
-.form-control:focus
-{
-  border-bottom: 1px solid #FC563B;
-  border-radius: 0px;
-  box-shadow: none !important;
-  margin-bottom: 10px;
-  moz-box-shadow: none !important;
-  outline: none;
-  webkit-box-shadow: none !important;
-}
 .btn-orange
 {
   background-color: #FC563B;
-  border-radius: 0px;
-  font-size: 20px;
-  font-weight: inherit;
-  margin: 5px;
-  padding: 5px;
-  width: 150px;
+  margin-bottom: 8px;
+  color: #fefefe;
 }
 .btn-orange:hover
 {
   background-color: #F22F26;
-  border-radius: 0px;
-  color: #FFF !important;
-  font-size: 20px;
-  font-weight: inherit;
-  margin: 5px;
-  padding: 5px;
-  width: 150px;
+  color: #eaeaea;
 }
     </style>
 
@@ -177,11 +144,15 @@
               <form id="wow-form">
                 <div class="control">
                   <div class="label">Server</div>
-                  <input type="text" id="server" class="form-control" value="Server" autocomplete="off">
+                  <select id="server" class="form-control">
+                  </select>
+                  <!--
+                  Perhaps add this back as a fallback if servers fail to load.
+                  <input type="text" id="server" class="form-control" value="Server" autocomplete="off"> -->
                 </div>
                 <div class="control">
                   <div class="label">Character</div>
-                  <input type="password" id="characterName" class="form-control" value="Character" autocomplete="off">
+                  <input id="characterName" class="form-control" value="Character" autocomplete="off">
                 </div>
                 <div align="center">
                   <button class="btn btn-orange" type="submit">LOAD CHARACTER</button>
@@ -193,6 +164,9 @@
       </div><!-- /.container -->
 
     <div class="container">
+    <div id="results">
+    Test.
+    </div>
     <footer class="center">
         <p>Follow me on <i class="fa fa-twitter-square"></i> <a href="https://twitter.com/c1v0">@c1v0</a></p>
         <a href="https://www.polymer-project.org/" title="Polymer web components"><img class="polymer" src="https://www.polymer-project.org/images/logos/p-logo.svg"></a>
@@ -215,10 +189,24 @@
         var serverName = document.getElementById('server').value;
 
         wowCard.setAttribute('characterName', charName);
-        wowCard.setAttribute('serverName', charName);
+        wowCard.setAttribute('server', serverName);
+      });
 
-        console.log(charName);
-        console.log(serverName);
+      var select = document.getElementById('server');
+      //start ajax request
+      $.ajax({
+          url: "data/realms.json",
+          dataType: "text",
+          success: function(data) {
+              var realms = $.parseJSON(data);
+              for (var i = 0; i < realms.realms.length; i++) {
+                name = realms.realms[i].name;
+                var opt = document.createElement('option');
+                opt.textContent = name;
+                opt.value = name;
+                select.appendChild(opt);
+              }
+          }
       });
     }
   </script>
