@@ -1,0 +1,23 @@
+{
+    "lastModified": 1416646471000,
+    "name": "Carilliya",
+    "realm": "Emerald Dream",
+    "battlegroup": "Shadowburn",
+    "class": 3,
+    "race": 1,
+    "gender": 1,
+    "level": 66,
+    "achievementPoints": 855,
+    "thumbnail": "emerald-dream/130/90867842-avatar.jpg",
+    "calcClass": "Y",
+    "appearance": {
+        "faceVariation": 8,
+        "skinColor": 8,
+        "hairVariation": 3,
+        "hairColor": 9,
+        "featureVariation": 4,
+        "showHelm": true,
+        "showCloak": true
+    },
+    "totalHonorableKills": 134
+}
