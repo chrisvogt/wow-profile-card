@@ -1,0 +1,259 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
+
+<link rel="import" href="../polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="../apply-author-styles/apply-author-styles.html">
+
+<!--
+World of Warcraft character profile element. (Uses Twitter Bootstrap.)
+
+##### Example
+
+    <wow-profile-card></wow-profile-card>
+
+@element wow-profile-card
+@blurb Element that uses Twitter Bootstrap to render a World of Warcraft character profile element.
+@status beta
+@homepage http://chrisvogt.github.io/wow-profile-card
+-->
+<polymer-element name="wow-profile-card" attributes="characterName server">
+  <template>
+  <apply-author-styles></apply-author-styles>
+
+  <style>
+.container-character
+{
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  moz-border-radius: 14px;
+  webkit-border-radius: 14px;
+}
+.panel
+{
+  background: none!important;
+}
+*
+{
+  color: #FFF;
+  font-family: 'Raleway', sans-serif;
+}
+div h3 span
+{
+  color: #FFF;
+  font-size: 14px;
+}
+div span
+{
+  font-weight: 200;
+}
+h1
+{
+  font-weight: 200;
+}
+.login_box
+{
+  background-color: rgba(0,0,0,0.5)!important;
+  box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.54);
+  margin-top: 24px;
+  moz-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.54);
+  position: relative;
+  webkit-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.54);
+}
+
+.image-circle
+{
+  border: 2px solid #FFF;
+  border-radius: 50%;
+  height: 75px;
+  margin: 10px;
+  width: 75px;
+}
+.follow
+{
+  background-color: #FC563B;
+  cursor: pointer;
+  height: 80px;
+}
+.follow:hover
+{
+  background-color: #F22F26;
+  cursor: pointer;
+  height: 80px;
+}
+.login_control
+{
+  background-color: #FFF;
+  padding: 10px;
+  margin-bottom: 16px;
+}
+.control
+{
+  color: #000;
+  margin: 10px;
+}
+.label
+{
+  color: #EB4F26;
+  font-size: 18px;
+  font-weight: 500;
+}
+.form-control
+{
+  border: none;
+  border-bottom: 1px solid #CCC;
+  box-shadow: none !important;
+  color: #000000 !important;
+  font-size: 25px;
+  margin-bottom: 10px;
+  moz-box-shadow: none !important;
+  outline: none;
+  padding: 25px;
+  padding-left: 10px;
+  webkit-box-shadow: none !important;
+}
+.form-control:focus
+{
+  border-bottom: 1px solid #FC563B;
+  border-radius: 0px;
+  box-shadow: none !important;
+  margin-bottom: 10px;
+  moz-box-shadow: none !important;
+  outline: none;
+  webkit-box-shadow: none !important;
+}
+.btn-orange
+{
+  background-color: #FC563B;
+  border-radius: 0px;
+  font-size: 20px;
+  font-weight: inherit;
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+}
+.btn-orange:hover
+{
+  background-color: #F22F26;
+  border-radius: 0px;
+  color: #FFF !important;
+  font-size: 20px;
+  font-weight: inherit;
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+}
+.line
+{
+  border-bottom: 1px solid #989898;
+}
+.outter
+{
+  border: 1px solid rgba(255, 255, 255, 0.29);
+  border-radius: 50%;
+  height: 100px;
+  margin-top: 24px;
+  padding: 0px;
+  width: 100px;
+}
+  </style>
+
+  <!-- ========================= -->
+
+  <!-- PRODUCTION -->
+  <!-- <polymer-jsonp auto url="http://us.battle.net/api/wow/character/emerald-dream/Carilliya?fields=appearance&jsonp=" response="{{character}}"></polymer-jsonp> -->
+
+  <!-- DEVELOPMENT -->
+  <core-ajax id="topodata" auto url="data/character.json" handleAs="json"
+           response="{{ character }}"></core-ajax>
+
+  <!-- ========================= -->
+
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3 login_box">
+      <div class="row">
+        <div class="col-md-12 col-xs-12" align="center">
+          <div class="outter"><img src="{{ character.thumbnail | buildThumbnailUrl }}" class="image-circle"/></div>
+          <h1>{{ character.name }}</h1>
+          <p>{{ character.battlegroup }}</p>
+          <span>Last seen {{getInfo.info}} {{ character.lastModified | convertDateFilter }}</span>
+          <br />&nbsp;
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-xs-4 follow line" align="center">
+          <h3>
+          {{ character.level }} <br/> <span><i class="fa fa-star"></i> LEVEL</span>
+          </h3>
+        </div>
+        <div class="col-md-4 col-xs-4 follow line" align="center">
+          <h3>
+          {{ character.achievementPoints }} <br/> <span><i class="fa fa-star"></i> ACHIEVEMENTS</span>
+          </h3>
+        </div>
+        <div class="col-md-4 col-xs-4 follow line" align="center">
+          <h3>
+          {{ character.totalHonorableKills }} <br/> <span><i class="fa fa-bullseye"></i> HON. KILLS</span>
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-xs-12 login_control">
+          <div class="control">
+            <div class="label">Server</div>
+            <input type="text" class="form-control" value="Server"/>
+          </div>
+          <div class="control">
+            <div class="label">Character</div>
+            <input type="password" class="form-control" value="Character"/>
+          </div>
+          <div align="center">
+            <button class="btn btn-orange">LOAD CHARACTER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </template>
+
+  <script>
+  Polymer('wow-profile-card', {
+  /**
+   * The `characterName` attribute specifies the character paramter.
+   *
+   * @attribute characterName
+   * @type string
+   */
+   characterName: 'Carilliya',
+
+  /**
+   * The `server` attribute specifies the server parameter.
+   *
+   * @attribute
+   * @type string
+   */
+   server: 'emerald-dream',
+  /**
+   * The `convertDateFilter` method is a filter to format the date.
+   *
+   * @method convertDateFilter
+   */
+   convertDateFilter: function(value) {
+    if(value) {
+      var d = new Date(value);
+      return d.toLocaleDateString();
+    }
+   },
+  /**
+   * The `buildThumbnailUrl` method converts the thumbnail into a proper url.
+   *
+   * @method buildThumbnailUrl
+   */
+   buildThumbnailUrl: function(value) {
+    if(value) {
+      return 'http://us.battle.net/static-render/us/' + value;
+    }
+   }
+
+  });
+  </script>
+</polymer-element>
