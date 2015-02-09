@@ -18,6 +18,14 @@ Install using [Bower](http://bower.io):
   bower install chrisvogt/wow-profile-card#dev
 ```
 
+You should now be able to preview the component using the index.html and demo.html files. E.g.,
+
+```shell
+  python -m SimpleHTTPServer
+```
+
+Then navigate to: http://localhost:8000/bower_components/wow-profile-card/index.html
+
 ### License
 
 [MIT License](http://opensource.org/licenses/MIT)
