@@ -1,0 +1,29 @@
+{
+  "name": "wow-profile-card",
+  "version": "0.0.2",
+  "authors": [
+    "CJ Vogt <mail@chrisvogt.me>"
+  ],
+  "description": "A Polymer element that fetches World of Warcraft character info.",
+  "main": "wow-profile-card.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "world of warcraft widget",
+    "wow character widget"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/chrisvogt/wow-profile-card",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.2",
+    "core-ajax": "Polymer/core-ajax#~0.5.1"
+  }
+}
