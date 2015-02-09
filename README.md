@@ -15,7 +15,7 @@ A [Polymer](https://www.polymer-project.org/) element for viewing World of Warcr
 Install using [Bower](http://bower.io):
 
 ```shell
-  bower install wow-profile-card
+  bower install chrisvogt/wow-profile-card#dev
 ```
 
 ### License
