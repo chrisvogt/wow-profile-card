@@ -4,7 +4,7 @@ A [Polymer](https://www.polymer-project.org/) element for viewing World of Warcr
 
 ### Demo
 
-> [View it live](http://wow-profile-card.chrisvogt.me).
+> [View it live](http://chrisvogt.github.io/wow-profile-card/bower_components/wow-profile-card/demo.html).
 
 ### Screenshot
 
