@@ -22,14 +22,13 @@
     "polymer": "Polymer/polymer#~0.3.2",
     "core-ajax": "Polymer/core-ajax#~0.3.2"
   },
-  "_release": "434679b8da",
+  "_release": "cfdcdeee3d",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "434679b8da1df0def4344de8ea45d88ddb39d563"
+    "commit": "cfdcdeee3de57be8143f51eff07de36b4ed23276"
   },
   "_source": "git://github.com/eee-c/apply-author-styles.git",
   "_target": "*",
-  "_originalSource": "eee-c/apply-author-styles",
-  "_direct": true
+  "_originalSource": "eee-c/apply-author-styles"
 }

@@ -1,0 +1,203 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
+
+<link rel="import" href="../polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="../apply-author-styles/apply-author-styles.html">
+
+<!--
+World of Warcraft character profile element. (Uses Twitter Bootstrap.)
+
+##### Example
+
+    <wow-profile-card></wow-profile-card>
+
+@element wow-profile-card
+@blurb Element that uses Twitter Bootstrap to render a World of Warcraft character profile element.
+@status beta
+@homepage http://chrisvogt.github.io/wow-profile-card
+-->
+<polymer-element name="wow-profile-card" attributes="characterName server">
+  <template>
+  <apply-author-styles></apply-author-styles>
+
+  <style>
+.container-character
+{
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  moz-border-radius: 14px;
+  webkit-border-radius: 14px;
+}
+.panel
+{
+  background: none!important;
+}
+*
+{
+  color: #FFF;
+  font-family: 'Raleway', sans-serif;
+}
+h3 {
+  font-size: .625em;
+}
+div h3 span
+{
+  color: #FFF;
+  font-size: .675em;
+}
+div span
+{
+  font-weight: 200;
+}
+h1
+{
+  font-weight: 100!important;
+}
+h3
+{
+  font-size: 1.25em!important;
+}
+.container
+{
+  -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  -webkit-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  -o-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+  transition: width 1s ease-in-out, left 1.5s ease-in-out;
+}
+.login_box
+{
+  background: url('http://www.transparenttextures.com/patterns/3px-tile.png') repeat,
+              rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.54);
+  margin-top: 24px;
+  moz-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.54);
+  webkit-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.54);
+  border-top-right-radius: 8px;
+  -moz-border-top-right-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  overflow: hidden;
+}
+
+.image-circle
+{
+  border: 2px solid #FFF;
+  border-radius: 50%;
+  height: 75px;
+  margin: 10px;
+  width: 75px;
+}
+.follow
+{
+  background-color: #FC563B;
+  cursor: pointer;
+}
+.follow .line:hover
+{
+  background-color: #F22F26;
+  cursor: pointer;
+}
+.outter
+{
+  border: 1px solid rgba(255, 255, 255, 0.29);
+  border-radius: 50%;
+  height: 100px;
+  margin-top: 24px;
+  padding: 0px;
+  width: 100px;
+}
+@media (max-width: 391px) {
+  .hide-small {
+    display: none;
+  }
+  .follow {
+    height: auto;
+  }
+}
+  </style>
+
+  <!-- ========================= -->
+
+  <!-- PRODUCTION -->
+  <polymer-jsonp auto url="http://us.battle.net/api/wow/character/{{ server }}/{{ characterName }}?fields=appearance&jsonp=" response="{{character}}"></polymer-jsonp>
+
+  <!-- DEVELOPMENT -->
+  <!-- <core-ajax id="topodata" auto url="data/character.json" handleAs="json"
+           response="{{ character }}"></core-ajax> -->
+
+  <!-- ========================= -->
+
+    <div class="col-md-6 col-md-offset-3 login_box" align="center">
+      <div class="row">
+        <div class="outter"><img src="{{ character.thumbnail | buildThumbnailUrl }}" class="image-circle"/></div>
+        <h1>{{ character.name }}</h1>
+        <p>{{ character.realm }}</p>
+        <span>Last seen {{getInfo.info}} {{ character.lastModified | convertDateFilter }}</span>
+        <br />&nbsp;
+      </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="row follow">
+        <div class="col-md-4 col-xs-4 line" align="center">
+          <h3>
+          <i class="fa fa-star"></i> {{ character.level }} <br/> <span class="hide-small">LEVEL</span>
+          </h3>
+        </div>
+        <div class="col-md-4 col-xs-4 line" align="center">
+          <h3>
+          <i class="fa fa-star"></i> {{ character.achievementPoints }} <br/> <span class="hide-small">ACHIEVEMENTS</span>
+          </h3>
+        </div>
+        <div class="col-md-4 col-xs-4 line" align="center">
+          <h3>
+          <i class="fa fa-bullseye"></i> {{ character.totalHonorableKills }} <br/> <span class="hide-small">HON. KILLS</span>
+          </h3>
+        </div>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+  Polymer('wow-profile-card', {
+  /**
+   * The `characterName` attribute specifies the character paramter.
+   *
+   * @attribute characterName
+   * @type string
+   */
+   characterName: 'Carilliya',
+
+  /**
+   * The `server` attribute specifies the server parameter.
+   *
+   * @attribute
+   * @type string
+   */
+   server: 'emerald-dream',
+  /**
+   * The `convertDateFilter` method is a filter to format the date.
+   *
+   * @method convertDateFilter
+   */
+   convertDateFilter: function(value) {
+    if(value) {
+      var d = new Date(value);
+      return d.toLocaleDateString();
+    }
+   },
+  /**
+   * The `buildThumbnailUrl` method converts the thumbnail into a proper url.
+   *
+   * @method buildThumbnailUrl
+   */
+   buildThumbnailUrl: function(value) {
+    if(value) {
+      return 'http://us.battle.net/static-render/us/' + value;
+    }
+   }
+
+  });
+  </script>
+
+</polymer-element>
