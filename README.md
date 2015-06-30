@@ -6,10 +6,6 @@ A [Polymer](https://www.polymer-project.org/) element for viewing World of Warcr
 
 > [View it live](http://chrisvogt.github.io/wow-profile-card/bower_components/wow-profile-card/demo.html).
 
-### Screenshot
-
-![WoW Profile Card](http://res.cloudinary.com/chrisvogt/image/upload/v1420464356/wow-profile-viewer_pcr3ze.png)
-
 ### Installation
 
 Install using [Bower](http://bower.io):
@@ -25,6 +21,10 @@ You should now be able to preview the component using the index.html and demo.ht
 ```
 
 Then navigate to: http://localhost:8000/bower_components/wow-profile-card/index.html
+
+### Screenshot
+
+![WoW Profile Card](screenshot.jpg)
 
 ### License
 
